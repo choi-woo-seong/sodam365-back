@@ -4,13 +4,12 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "bookmark")
 @Getter
 @Setter
-public class Bookmark {
+public class Bookmark extends BaseTimeEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long no;
@@ -22,15 +21,11 @@ public class Bookmark {
     private String link;
 
     @ManyToOne
+    @JoinColumn(name = "n_userid", nullable = false)
+    private Nuser n_user;
+
+    @ManyToOne
     @JoinColumn(name = "userid", nullable = false)
-    private User user;
+    private User userid;
 
-    @Column(length = 50)
-    private String img;
-
-    @Column
-    private LocalDateTime create_at;
-
-    @Column
-    private LocalDateTime update_at;
 }

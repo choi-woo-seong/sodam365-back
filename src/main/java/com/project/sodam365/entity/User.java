@@ -1,18 +1,24 @@
 package com.project.sodam365.entity;
 
+import com.project.sodam365.entity.BaseTimeEntity;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
-@Table(name = "user")
+@Table(name = "b_user")
 @Getter
-@Setter
-public class User {
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class User extends BaseTimeEntity {
+
     @Id
-    @Column(length = 50, nullable = false)
+    @Column(length = 50, nullable = false, updatable = false)
     private String userid;
 
     @Column(length = 100, nullable = false)
@@ -39,9 +45,16 @@ public class User {
     @Column(length = 20)
     private String phone2;
 
-    @Column
-    private LocalDateTime create_at;
+    // 엔티티 저장 전, UUID 자동 생성
+    @PrePersist
+    public void generateId() {
+        if (this.userid == null || this.userid.isEmpty()) {
+            this.userid = UUID.randomUUID().toString();
+        }
+    }
 
-    @Column
-    private LocalDateTime update_at;
+    // 비밀번호 설정 (암호화 적용)
+    public void encodePassword(String encodedPassword) {
+        this.password = encodedPassword;
+    }
 }

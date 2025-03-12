@@ -4,13 +4,12 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "gov")
 @Getter
 @Setter
-public class Gov {
+public class Gov extends BaseTimeEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long no;
@@ -42,9 +41,4 @@ public class Gov {
     @Column(length = 20, nullable = false)
     private String rdptMthd;
 
-    @Column
-    private LocalDateTime create_at;
-
-    @Column
-    private LocalDateTime update_at;
 }

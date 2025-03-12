@@ -4,13 +4,12 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "location")
 @Getter
 @Setter
-public class Location {
+public class Location extends BaseTimeEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long no;
@@ -26,11 +25,6 @@ public class Location {
 
     @ManyToOne
     @JoinColumn(name = "userid", nullable = false)
-    private User user;
+    private User userid;
 
-    @Column
-    private LocalDateTime create_at;
-
-    @Column
-    private LocalDateTime update_at;
 }
