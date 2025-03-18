@@ -1,16 +1,15 @@
 package com.project.sodam365.entity;
 
-import com.project.sodam365.entity.BaseTimeEntity;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
 import java.util.UUID;
 
 @Entity
-@Table(name = "b_user")
+@Table(name = "b_user")  // ✅ 테이블명 유지
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,31 +17,40 @@ import java.util.UUID;
 public class User extends BaseTimeEntity {
 
     @Id
-    @Column(length = 50, nullable = false, updatable = false)
+    @Column(name = "userid", length = 50, nullable = false, updatable = false)
+    @JsonProperty("userid")  // ✅ JSON 매핑 명확화
     private String userid;
 
-    @Column(length = 100, nullable = false)
+    @Column(name = "password", length = 100, nullable = false)
+    @JsonProperty("password")
     private String password;
 
-    @Column(length = 30, nullable = false)
+    @Column(name = "name", length = 30, nullable = false)
+    @JsonProperty("name")
     private String name;
 
-    @Column(length = 30, nullable = false)
+    @Column(name = "ownername", length = 30, nullable = false)
+    @JsonProperty("ownername")
     private String ownername;
 
-    @Column(length = 20, nullable = false)
+    @Column(name = "ownernum", length = 20, nullable = false)
+    @JsonProperty("ownernum")
     private String ownernum;
 
-    @Column(length = 100, nullable = false)
+    @Column(name = "ownerloc", length = 100, nullable = false)
+    @JsonProperty("ownerloc")
     private String ownerloc;
 
-    @Column(length = 30)
+    @Column(name = "email", length = 30)
+    @JsonProperty("email")
     private String email;
 
-    @Column(length = 20, nullable = false)
+    @Column(name = "phone1", length = 20, nullable = false)
+    @JsonProperty("phone1")
     private String phone1;
 
-    @Column(length = 20)
+    @Column(name = "phone2", length = 20)
+    @JsonProperty("phone2")
     private String phone2;
 
     // 엔티티 저장 전, UUID 자동 생성

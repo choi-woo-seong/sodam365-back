@@ -18,28 +18,31 @@ public class NuserDto {
     private String address;
     private String n_email;
     private String n_phone1;
+    private String n_phone2;
 
     // User 엔티티 → UserDto 변환
     public static NuserDto fromUserEntity(Nuser user) {
         return NuserDto.builder()
-                .n_userid(user.getN_userid())
-                .n_password(user.getN_password())
-                .n_name(user.getN_name())
-                .n_email(user.getN_email())
+                .n_userid(user.getNUserid())
+                .n_password(user.getNPassword())
+                .n_name(user.getNName())
+                .n_email(user.getNEmail())
                 .address(user.getAddress())
-                .n_phone1(user.getN_phone1())
+                .n_phone1(user.getNPhone1())
+                .n_phone2(user.getNPhone2())
                 .build();
     }
 
     // UserDto → User 엔티티 변환 (빌더 패턴 적용)
     public static Nuser fromUserDto(NuserDto userDto) {
         return Nuser.builder()
-                .n_userid(userDto.getN_userid())
-                .n_password(userDto.getN_password())
-                .n_name(userDto.getN_name())
-                .n_email(userDto.getN_email())
+                .nUserid(userDto.getN_userid())
+                .nPassword(userDto.getN_password())
+                .nName(userDto.getN_name())
+                .nEmail(userDto.getN_email())
                 .address(userDto.getAddress())
-                .n_phone1(userDto.getN_phone1())
+                .nPhone1(userDto.getN_phone1())
+                .nPhone2(userDto.getN_phone2())
                 .build();
     }
 }
