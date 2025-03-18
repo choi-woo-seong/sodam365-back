@@ -75,8 +75,4 @@ public class UserController {
         return ResponseEntity.ok(isDuplicate);
     }
 
-    @PostMapping("/users/nlogin")
-    public void n_login(@RequestBody NuserDto nuserDto) {
-        nuserService.n_login();
-    }
 }

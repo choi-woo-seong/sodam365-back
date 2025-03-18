@@ -67,12 +67,12 @@ public class UserService {
 
         // DTO → 엔티티 변환
         Nuser user = Nuser.builder()
-                .n_userid(dto.getN_userid())
-                .n_password(encryptedPassword)
-                .n_name(dto.getN_name())
-                .n_email(dto.getN_email())
+                .nUserid(dto.getN_userid())
+                .nPassword(encryptedPassword)
+                .nName(dto.getN_name())
+                .nEmail(dto.getN_email())
                 .address(dto.getAddress())
-                .n_phone1(dto.getN_phone1())
+                .nPhone1(dto.getN_phone1())
                 .build();
 
         nuserRepository.save(user);

@@ -1,49 +1,55 @@
 package com.project.sodam365.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.util.UUID;
 
 @Entity
-@Table(name = "user")
+@Table(name = "`user`")
 @Getter
-//@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Nuser extends BaseTimeEntity {
-
     @Id
-    @Column(length = 50, nullable = false, updatable = false)
-    private String n_userid;
+    @Column(name = "n_userid", length = 50, nullable = false, updatable = false)
+    @JsonProperty("nUserid")  // ✅ JSON 매핑을 명확히 지정
+    private String nUserid;
 
-    @Column(length = 100, nullable = false)
-    private String n_password;
+    @Column(name = "n_password", length = 100, nullable = false)
+    @JsonProperty("nPassword")  // ✅ JSON 매핑을 명확히 지정
+    private String nPassword;
 
-    @Column(length = 30, nullable = false)
-    private String n_name;
+    @Column(name = "n_name", length = 30, nullable = false)
+    @JsonProperty("nName")
+    private String nName;
 
-    @Column(length = 30)
-    private String n_email;
+    @Column(name = "n_email", length = 30)
+    @JsonProperty("nEmail")
+    private String nEmail;
 
-    @Column(length = 100, nullable = false)
+    @Column(name = "address", length = 100, nullable = false)
+    @JsonProperty("address")
     private String address;
 
-    @Column(length = 20, nullable = false)
-    private String n_phone1;
+    @Column(name = "n_phone1", length = 20, nullable = false)
+    @JsonProperty("nPhone1")
+    private String nPhone1;
+
+    @Column(name = "n_phone2", length = 20, nullable = true)
+    @JsonProperty("nPhone2")
+    private String nPhone2;
 
 
-    // 엔티티 저장 전, UUID 자동 생성
     @PrePersist
     public void generateId() {
-        if (this.n_userid == null || this.n_userid.isEmpty()) {
-            this.n_userid = UUID.randomUUID().toString();
+        if (this.nUserid == null || this.nUserid.isEmpty()) {
+            this.nUserid = UUID.randomUUID().toString();
         }
     }
 
-    // 비밀번호 설정 (암호화 적용)
     public void encodePassword(String encodedPassword) {
-        this.n_password = encodedPassword;
+        this.nPassword = encodedPassword;
     }
 }
